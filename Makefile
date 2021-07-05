@@ -29,10 +29,10 @@ haskell/build: all/init ${HDIR}/Main.hs
 cpp/build: all/init ${CDIR}/main.cpp
 	${CC} -o ${BDIR}/${BNAME}_cpp ${CDIR}/main.cpp
 
-haskell/run: haskell/build
+haskell/run:
 	@${BDIR}/${BNAME}_haskell ${N_QUEENS}
 
-cpp/run: cpp/build
+cpp/run:
 	@${BDIR}/${BNAME}_cpp ${N_QUEENS}
 
 
