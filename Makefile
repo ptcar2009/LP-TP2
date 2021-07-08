@@ -2,6 +2,7 @@ CC=g++
 HC=ghc
 ODIR=obj
 HDIR=haskell
+PDIR=prolog
 CDIR=cpp
 BNAME=queens
 BDIR=.
@@ -9,7 +10,7 @@ BDIR=.
 N_QUEENS ?= 8
 
 
-all: haskell/build cpp/build
+all: all/init haskell/build cpp/build
 
 all/build: haskell/build cpp/build
 
@@ -35,9 +36,18 @@ haskell/run:
 cpp/run:
 	@${BDIR}/${BNAME}_cpp ${N_QUEENS}
 
+prolog/init: prolog/confirm_install
+	sudo apt-add-repository ppa:swi-prolog/stable
+	sudo apt-get update
+	sudo apt-get install swi-prolog
 
+prolog/confirm_install:
+	@echo -n "Isso instalara o swi-prolog. Tem certeza que quer continuar? [y/N] " && read ans && [ $${ans:-N} = y ]
+
+prolog/run:
+	@./${PDIR}/main.pl ${N_QUEENS}
 
 .PHONY: clean
 clean:
-	@rm -rf ${ODIR}/*
+	@rm -rf ${ODIR}
 	@rm -rf ${BDIR}/${BNAME}*
