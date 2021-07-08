@@ -35,7 +35,7 @@ O arquivo está marcado como executável e pode ser executado diretamente de um 
 Todas as dependências e processos de execução estão configurados dentro do `Makefile` incluído no diretório. Para instalar as dependências (assumindo `ubuntu` e `gcc` instalado):
 
 ```bash
-make prolog/init haskell/init
+make prolog/init haskell/install
 ```
 
 Para compilar os arquivos `c++` e `haskell`, basta executar:
